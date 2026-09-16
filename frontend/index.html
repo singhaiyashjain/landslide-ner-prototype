@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GeoSentinel NER — Landslide Risk Prototype</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <h1>🛰️ GeoSentinel NER</h1>
+    <p>AI-based landslide early warning — pilot district prototype</p>
+  </header>
+
+  <main class="layout">
+    <section class="map-panel">
+      <div id="map"></div>
+    </section>
+
+    <aside class="control-panel">
+      <div class="card">
+        <h2>What-if Rainfall Slider</h2>
+        <p class="hint">Drag to simulate rainfall intensity and watch zones recolor live.</p>
+        <input type="range" id="rainfallSlider" min="0" max="300" value="100" step="5" />
+        <div class="slider-value">Rainfall: <span id="rainfallVal">100</span> mm</div>
+      </div>
+
+      <div class="card">
+        <h2>Legend</h2>
+        <div class="legend-row"><span class="dot low"></span> Low risk</div>
+        <div class="legend-row"><span class="dot medium"></span> Medium risk</div>
+        <div class="legend-row"><span class="dot high"></span> High risk</div>
+      </div>
+
+      <div class="card" id="selectedZoneCard" style="display:none;">
+        <h2>Selected Zone</h2>
+        <div id="zoneDetails"></div>
+        <button id="alertBtn" class="alert-btn">🚨 Simulate Alert</button>
+        <div id="alertBanner" class="alert-banner" style="display:none;"></div>
+      </div>
+
+      <div class="card stats">
+        <h2>Live Summary</h2>
+        <div id="statsRow"></div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+  <script src="map.js"></script>
+</body>
+</html>

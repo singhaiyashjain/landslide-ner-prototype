@@ -1,0 +1,21 @@
+{
+  "district": "Pilot District, NER",
+  "center": { "lat": 25.578, "lng": 91.893 },
+  "zones": [
+    { "id": "z1", "name": "Sohra Ridge",        "lat": 25.2840, "lng": 91.7273, "slope_deg": 42, "base_rainfall_mm": 180, "soil_moisture_pct": 68 },
+    { "id": "z2", "name": "Mawkdok Valley",      "lat": 25.3120, "lng": 91.7660, "slope_deg": 35, "base_rainfall_mm": 140, "soil_moisture_pct": 55 },
+    { "id": "z3", "name": "Dawki Roadside",      "lat": 25.1830, "lng": 92.0180, "slope_deg": 28, "base_rainfall_mm": 95,  "soil_moisture_pct": 40 },
+    { "id": "z4", "name": "Shillong Peak Slope", "lat": 25.5570, "lng": 91.8330, "slope_deg": 38, "base_rainfall_mm": 120, "soil_moisture_pct": 60 },
+    { "id": "z5", "name": "Nongstoin Hills",     "lat": 25.5190, "lng": 91.2650, "slope_deg": 22, "base_rainfall_mm": 85,  "soil_moisture_pct": 35 },
+    { "id": "z6", "name": "Jowai Escarpment",    "lat": 25.4500, "lng": 92.1940, "slope_deg": 45, "base_rainfall_mm": 200, "soil_moisture_pct": 72 },
+    { "id": "z7", "name": "Cherrapunji Ridge",   "lat": 25.3000, "lng": 91.5822, "slope_deg": 40, "base_rainfall_mm": 210, "soil_moisture_pct": 70 },
+    { "id": "z8", "name": "Mawsynram Slope",     "lat": 25.2960, "lng": 91.5820, "slope_deg": 33, "base_rainfall_mm": 190, "soil_moisture_pct": 62 },
+    { "id": "z9", "name": "Umiam Lakeside",      "lat": 25.6740, "lng": 91.8930, "slope_deg": 18, "base_rainfall_mm": 70,  "soil_moisture_pct": 30 },
+    { "id": "z10","name": "Nongpoh Foothills",   "lat": 25.9010, "lng": 91.8790, "slope_deg": 15, "base_rainfall_mm": 60,  "soil_moisture_pct": 25 },
+    { "id": "z11","name": "Byrnihat Corridor",   "lat": 25.9670, "lng": 91.8930, "slope_deg": 12, "base_rainfall_mm": 50,  "soil_moisture_pct": 20 },
+    { "id": "z12","name": "Laitkynsew Bend",     "lat": 25.2600, "lng": 91.6700, "slope_deg": 37, "base_rainfall_mm": 165, "soil_moisture_pct": 58 },
+    { "id": "z13","name": "Pynursla Slope",      "lat": 25.3400, "lng": 91.8830, "slope_deg": 30, "base_rainfall_mm": 110, "soil_moisture_pct": 48 },
+    { "id": "z14","name": "Ranikor Bank",        "lat": 25.2300, "lng": 91.3200, "slope_deg": 20, "base_rainfall_mm": 75,  "soil_moisture_pct": 32 },
+    { "id": "z15","name": "Mairang Ridge",       "lat": 25.5670, "lng": 91.4670, "slope_deg": 26, "base_rainfall_mm": 90,  "soil_moisture_pct": 42 }
+  ]
+}
