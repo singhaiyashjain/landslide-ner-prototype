@@ -4,6 +4,7 @@
 ------------------------------------------------------------------- */
 
 const DATA_URL = "../data/risk_data.json";
+const ALERT_API = "http://localhost:5000";
 
 let zoneData = null;
 let markers = {}; // id -> leaflet layer
@@ -114,27 +115,94 @@ function wireSlider() {
 }
 
 // ---------- Alert button ----------
-// NOTE: this only simulates the UI. To actually send an SMS, wire this
-// button to a call to your backend (see backend/alerts.py), e.g.:
-//
-//   fetch("http://localhost:5000/send-alert", {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify({ zone: zone.name, risk: risk.label })
-//   });
-//
+// Wired to backend/alerts.py. That server auto-detects whether real
+// Twilio credentials are configured: if so it sends a real SMS, if not
+// (or if the call fails) it returns a "simulated" result instead of
+// erroring out. Either way we get a real response to show, and the
+// alert gets logged so /alerts can feed the "Recent Alerts" panel.
 function wireAlertButton() {
-  document.getElementById("alertBtn").addEventListener("click", () => {
+  document.getElementById("alertBtn").addEventListener("click", async () => {
     if (!selectedZoneId) return;
     const zone = zoneData.zones.find((z) => z.id === selectedZoneId);
     const risk = markers[selectedZoneId]._riskData;
+    const toNumber = document.getElementById("alertPhone").value.trim();
 
     const banner = document.getElementById("alertBanner");
     banner.style.display = "block";
-    banner.innerHTML = `⚠️ ALERT SIMULATED for <b>${zone.name}</b> — Risk: ${risk.label}.<br>
-      SMS + evacuation route would be dispatched here.<br>
-      <em>(Wire this button to backend/alerts.py to send a real SMS.)</em>`;
+    banner.innerHTML = `Sending alert for <b>${zone.name}</b>…`;
+
+    try {
+      const res = await fetch(`${ALERT_API}/send-alert`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          to_number: toNumber || null,
+          zone: zone.name,
+          risk: risk.label,
+          score: risk.score,
+        }),
+      });
+      const result = await res.json();
+      renderAlertResult(banner, result);
+      loadAlertFeed();
+    } catch (err) {
+      // Backend not running / network issue — don't leave the demo hanging.
+      banner.innerHTML = `⚠️ Could not reach the alert server at ${ALERT_API}.<br>
+        Start it with <code>python alerts.py --server</code> in the backend folder.<br>
+        <em>${err.message}</em>`;
+    }
   });
+}
+
+function renderAlertResult(banner, result) {
+  const statusLabel =
+    result.status === "sent"
+      ? "✅ SENT (real SMS)"
+      : result.status === "error-fallback"
+      ? "⚠️ SIMULATED (Twilio call failed, fell back)"
+      : "🔶 SIMULATED";
+
+  banner.innerHTML = `${statusLabel} — <b>${result.zone}</b>, Risk: ${result.risk} (score ${result.score})<br>
+    <span class="hint">${result.note}</span>`;
+}
+
+// ---------- Recent alerts feed (backend/alerts.py -> /alerts) ----------
+async function loadAlertFeed() {
+  const feed = document.getElementById("alertFeed");
+  try {
+    const res = await fetch(`${ALERT_API}/alerts`);
+    const alerts = await res.json();
+    if (!alerts.length) {
+      feed.innerHTML = `<p class="hint">No alerts sent yet this session.</p>`;
+      return;
+    }
+    feed.innerHTML = alerts
+      .slice(0, 8)
+      .map((a) => {
+        const badgeClass = a.status === "sent" ? "sent" : "simulated";
+        const time = new Date(a.timestamp).toLocaleTimeString();
+        return `<div class="alert-feed-item">
+          <span class="feed-badge ${badgeClass}">${a.status}</span>
+          <b>${a.zone}</b> — ${a.risk} <span class="hint">${time}</span>
+        </div>`;
+      })
+      .join("");
+  } catch (err) {
+    feed.innerHTML = `<p class="hint">Alert server offline — start backend/alerts.py --server to see live history.</p>`;
+  }
+}
+
+async function checkBackendMode() {
+  const badge = document.getElementById("backendMode");
+  try {
+    const res = await fetch(`${ALERT_API}/health`);
+    const data = await res.json();
+    badge.textContent = data.mode === "live" ? "LIVE" : "SIMULATION";
+    badge.className = `mode-badge ${data.mode === "live" ? "live" : "sim"}`;
+  } catch (err) {
+    badge.textContent = "OFFLINE";
+    badge.className = "mode-badge offline";
+  }
 }
 
 // ---------- Boot ----------
@@ -146,6 +214,8 @@ async function boot() {
   renderZones();
   wireSlider();
   wireAlertButton();
+  checkBackendMode();
+  loadAlertFeed();
 }
 
 boot().catch((err) => {
