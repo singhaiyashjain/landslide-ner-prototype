@@ -38,13 +38,22 @@
       <div class="card" id="selectedZoneCard" style="display:none;">
         <h2>Selected Zone</h2>
         <div id="zoneDetails"></div>
-        <button id="alertBtn" class="alert-btn">🚨 Simulate Alert</button>
+        <label class="hint" for="alertPhone">Alert phone number (optional, E.164 e.g. +9198XXXXXXXX)</label>
+        <input type="text" id="alertPhone" class="phone-input" placeholder="+91XXXXXXXXXX" />
+        <button id="alertBtn" class="alert-btn">🚨 Send Alert</button>
         <div id="alertBanner" class="alert-banner" style="display:none;"></div>
       </div>
 
       <div class="card stats">
         <h2>Live Summary</h2>
         <div id="statsRow"></div>
+      </div>
+
+      <div class="card">
+        <h2>Recent Alerts <span id="backendMode" class="mode-badge">checking…</span></h2>
+        <div id="alertFeed" class="alert-feed">
+          <p class="hint">No alerts sent yet this session.</p>
+        </div>
       </div>
     </aside>
   </main>
