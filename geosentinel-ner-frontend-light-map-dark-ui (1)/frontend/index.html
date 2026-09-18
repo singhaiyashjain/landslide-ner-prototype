@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GeoSentinel NER — Landslide Risk Console</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="pulse"></span>
+      <h1>GeoSentinel NER</h1>
+      <span class="subtitle">East Khasi Hills pilot — landslide early warning console</span>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="stat-num" id="statZones">—</div><div class="stat-label">zones monitored</div></div>
+      <div class="stat"><div class="stat-num warn" id="statHigh">—</div><div class="stat-label">high risk now</div></div>
+      <div class="stat"><div class="stat-num" id="statSensors">—</div><div class="stat-label">sensor nodes</div></div>
+    </div>
+    <div class="sync-time" id="syncTime">synced —</div>
+  </header>
+
+  <div class="sources-strip">
+    <div class="source-badge"><span class="dot"></span>IoT soil moisture sensors (simulated)</div>
+    <div class="source-badge"><span class="dot"></span>Sentinel-1 SAR / InSAR</div>
+    <div class="source-badge"><span class="dot"></span>IMD rainfall feed</div>
+    <div class="source-badge"><span class="dot"></span>NCS seismic feed</div>
+    <div class="source-badge"><span class="dot"></span>Community reports</div>
+  </div>
+
+  <main class="layout">
+    <nav class="layer-rail" id="layerRail">
+      <button class="layer-btn active" data-layer="risk"><span class="icon">&#9679;</span>Risk</button>
+      <button class="layer-btn" data-layer="rainfall"><span class="icon">&#9730;</span>Rainfall</button>
+      <button class="layer-btn" data-layer="soil"><span class="icon">&#9895;</span>Soil</button>
+      <button class="layer-btn" data-layer="seismic"><span class="icon">&#9889;</span>Seismic</button>
+      <button class="layer-btn" data-layer="vegetation"><span class="icon">&#8203;&#127793;</span>Veg</button>
+      <div class="divider"></div>
+      <button class="layer-btn toggle" id="infraToggle"><span class="icon">&#128739;</span>Infra</button>
+      <button class="layer-btn toggle" id="reportToggle"><span class="icon">&#128204;</span>Report</button>
+    </nav>
+
+    <section class="map-panel">
+      <div id="map"></div>
+      <div class="map-legend" id="mapLegend"></div>
+      <div class="report-mode-banner" id="reportBanner">
+        Click the map to drop a report pin
+        <button id="cancelReportMode">Cancel</button>
+      </div>
+    </section>
+
+    <aside class="detail-panel" id="detailPanel">
+      <div class="detail-empty" id="detailEmpty">Select a zone on the map to see its risk breakdown.</div>
+      <div class="detail-inner" id="detailInner" style="display:none;"></div>
+    </aside>
+  </main>
+
+  <div class="bottom-strip">
+    <div class="slider-block">
+      <div class="row-label"><span>What-if rainfall</span><b id="rainfallVal">100</b>&nbsp;mm</div>
+      <input type="range" id="rainfallSlider" min="0" max="300" value="100" step="5" />
+      <div class="slider-hint">Simulates a rainfall event and recolors every zone live.</div>
+    </div>
+    <div class="activity-log">
+      <div class="row-label">Activity log</div>
+      <div id="logList"><div class="log-empty">No activity yet.</div></div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="reportModalBackdrop">
+    <div class="modal">
+      <h3>Report ground condition</h3>
+      <div class="modal-sub" id="reportModalCoords">—</div>
+      <label>Type</label>
+      <select id="reportType">
+        <option>Fresh crack in ground/road</option>
+        <option>Soil slip / small slide</option>
+        <option>Unusual water seepage</option>
+        <option>Road or embankment damage</option>
+        <option>Other</option>
+      </select>
+      <label>Notes (optional)</label>
+      <textarea id="reportNotes" placeholder="What did you see?"></textarea>
+      <div class="modal-actions">
+        <button class="btn ghost full" id="reportCancelBtn">Cancel</button>
+        <button class="btn primary full" id="reportSubmitBtn">Submit report</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+  <script src="map.js"></script>
+</body>
+</html>

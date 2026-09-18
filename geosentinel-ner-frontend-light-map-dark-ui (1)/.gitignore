@@ -1,0 +1,35 @@
+# --- Environment / secrets ---
+.env
+.env.local
+*.env
+!.env.example
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+venv/
+env/
+.venv/
+*.egg-info/
+
+# --- Node / frontend tooling (if added later) ---
+node_modules/
+dist/
+build/
+.npm/
+
+# --- Editor / OS junk ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+
+# --- Logs ---
+*.log
+npm-debug.log*
+
+# --- Misc ---
+.cache/
+*.tmp

@@ -1,0 +1,33 @@
+{
+  "district": "East Khasi Hills (Sohra / Cherrapunjee belt), Meghalaya",
+  "center": { "lat": 25.578, "lng": 91.893 },
+  "notes": "slope_deg/base_rainfall_mm/soil_moisture_pct are from the original prototype data. seismic_activity, vegetation_cover_pct, human_activity_index and insar_deformation_mm_yr were added for the layered map views and are ESTIMATES for demo purposes (grounded in general knowledge of each spot -- e.g. Dawki/Laitkynsew are known road-cut slopes, Byrnihat has quarrying activity, Sohra/Mawsynram hold world rainfall records) rather than measured data. Replace with real DEM/InSAR/land-use data before any real deployment.",
+  "infrastructure": [
+    { "type": "road", "name": "NH-206 (Shillong-Dawki)", "coords": [[25.578,91.893],[25.45,91.95],[25.183,92.018]] },
+    { "type": "road", "name": "NH-40 (Shillong-Guwahati)", "coords": [[25.578,91.893],[25.75,91.89],[25.967,91.893]] },
+    { "type": "hydro", "name": "Umiam Hydro Station", "lat": 25.680, "lng": 91.897 }
+  ],
+  "safe_points": [
+    { "id": "s1", "name": "Sohra Community Hall", "lat": 25.2760, "lng": 91.7175 },
+    { "id": "s2", "name": "Shillong District HQ", "lat": 25.5788, "lng": 91.8933 },
+    { "id": "s3", "name": "Jowai Relief Centre", "lat": 25.4430, "lng": 92.2010 },
+    { "id": "s4", "name": "Nongpoh Transit Camp", "lat": 25.9050, "lng": 91.8830 }
+  ],
+  "zones": [
+    { "id": "z1", "name": "Sohra Ridge",        "lat": 25.2840, "lng": 91.7273, "slope_deg": 42, "base_rainfall_mm": 180, "soil_moisture_pct": 68, "seismic_activity": 6.0, "vegetation_cover_pct": 42, "human_activity_index": 55, "insar_deformation_mm_yr": 14, "nearest_safe": "s1" },
+    { "id": "z2", "name": "Mawkdok Valley",      "lat": 25.3120, "lng": 91.7660, "slope_deg": 35, "base_rainfall_mm": 140, "soil_moisture_pct": 55, "seismic_activity": 5.8, "vegetation_cover_pct": 58, "human_activity_index": 40, "insar_deformation_mm_yr": 9,  "nearest_safe": "s1" },
+    { "id": "z3", "name": "Dawki Roadside",      "lat": 25.1830, "lng": 92.0180, "slope_deg": 28, "base_rainfall_mm": 95,  "soil_moisture_pct": 40, "seismic_activity": 6.2, "vegetation_cover_pct": 35, "human_activity_index": 78, "insar_deformation_mm_yr": 16, "nearest_safe": "s3" },
+    { "id": "z4", "name": "Shillong Peak Slope", "lat": 25.5570, "lng": 91.8330, "slope_deg": 38, "base_rainfall_mm": 120, "soil_moisture_pct": 60, "seismic_activity": 5.9, "vegetation_cover_pct": 65, "human_activity_index": 60, "insar_deformation_mm_yr": 8,  "nearest_safe": "s2" },
+    { "id": "z5", "name": "Nongstoin Hills",     "lat": 25.5190, "lng": 91.2650, "slope_deg": 22, "base_rainfall_mm": 85,  "soil_moisture_pct": 35, "seismic_activity": 5.5, "vegetation_cover_pct": 70, "human_activity_index": 22, "insar_deformation_mm_yr": 4,  "nearest_safe": "s2" },
+    { "id": "z6", "name": "Jowai Escarpment",    "lat": 25.4500, "lng": 92.1940, "slope_deg": 45, "base_rainfall_mm": 200, "soil_moisture_pct": 72, "seismic_activity": 6.4, "vegetation_cover_pct": 38, "human_activity_index": 48, "insar_deformation_mm_yr": 19, "nearest_safe": "s3" },
+    { "id": "z7", "name": "Cherrapunji Ridge",   "lat": 25.3000, "lng": 91.5822, "slope_deg": 40, "base_rainfall_mm": 210, "soil_moisture_pct": 70, "seismic_activity": 6.1, "vegetation_cover_pct": 50, "human_activity_index": 45, "insar_deformation_mm_yr": 15, "nearest_safe": "s1" },
+    { "id": "z8", "name": "Mawsynram Slope",     "lat": 25.2960, "lng": 91.5820, "slope_deg": 33, "base_rainfall_mm": 190, "soil_moisture_pct": 62, "seismic_activity": 5.9, "vegetation_cover_pct": 55, "human_activity_index": 30, "insar_deformation_mm_yr": 11, "nearest_safe": "s1" },
+    { "id": "z9", "name": "Umiam Lakeside",      "lat": 25.6740, "lng": 91.8930, "slope_deg": 18, "base_rainfall_mm": 70,  "soil_moisture_pct": 30, "seismic_activity": 5.6, "vegetation_cover_pct": 72, "human_activity_index": 50, "insar_deformation_mm_yr": 3,  "nearest_safe": "s2" },
+    { "id": "z10","name": "Nongpoh Foothills",   "lat": 25.9010, "lng": 91.8790, "slope_deg": 15, "base_rainfall_mm": 60,  "soil_moisture_pct": 25, "seismic_activity": 5.4, "vegetation_cover_pct": 68, "human_activity_index": 42, "insar_deformation_mm_yr": 2,  "nearest_safe": "s4" },
+    { "id": "z11","name": "Byrnihat Corridor",   "lat": 25.9670, "lng": 91.8930, "slope_deg": 12, "base_rainfall_mm": 50,  "soil_moisture_pct": 20, "seismic_activity": 5.3, "vegetation_cover_pct": 30, "human_activity_index": 82, "insar_deformation_mm_yr": 6,  "nearest_safe": "s4" },
+    { "id": "z12","name": "Laitkynsew Bend",     "lat": 25.2600, "lng": 91.6700, "slope_deg": 37, "base_rainfall_mm": 165, "soil_moisture_pct": 58, "seismic_activity": 6.0, "vegetation_cover_pct": 40, "human_activity_index": 65, "insar_deformation_mm_yr": 17, "nearest_safe": "s1" },
+    { "id": "z13","name": "Pynursla Slope",      "lat": 25.3400, "lng": 91.8830, "slope_deg": 30, "base_rainfall_mm": 110, "soil_moisture_pct": 48, "seismic_activity": 5.7, "vegetation_cover_pct": 60, "human_activity_index": 35, "insar_deformation_mm_yr": 7,  "nearest_safe": "s2" },
+    { "id": "z14","name": "Ranikor Bank",        "lat": 25.2300, "lng": 91.3200, "slope_deg": 20, "base_rainfall_mm": 75,  "soil_moisture_pct": 32, "seismic_activity": 5.5, "vegetation_cover_pct": 66, "human_activity_index": 25, "insar_deformation_mm_yr": 3,  "nearest_safe": "s2" },
+    { "id": "z15","name": "Mairang Ridge",       "lat": 25.5670, "lng": 91.4670, "slope_deg": 26, "base_rainfall_mm": 90,  "soil_moisture_pct": 42, "seismic_activity": 5.6, "vegetation_cover_pct": 63, "human_activity_index": 28, "insar_deformation_mm_yr": 5,  "nearest_safe": "s2" }
+  ]
+}
